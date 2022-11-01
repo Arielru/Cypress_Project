@@ -16,7 +16,7 @@ describe('Assignment - Ariel Rudin', () => {
     //Validate all menu buttons are present.
     navigateTo.homePage()
     navigateTo.todaysDealsPage()
-    navigateTo.customerServicePageNotLogged()
+    navigateTo.customerServicePage(false)
     navigateTo.registryPage()
     navigateTo.sellPage()
     navigateTo.localDeliveryInIsraelPage()
@@ -34,24 +34,20 @@ describe('Assignment - Ariel Rudin', () => {
   })
 
   it('Test 1 - wheres my stuff? ', () => {
-    navigateTo.customerServicePageLogged()
+    navigateTo.customerServicePage(true)
     cy.get('.help-search-bar').type('where is My Stuff{enter}')
-    cy.url().should('eq', 'https://www.amazon.com/gp/help/customer/display.html/ref=fs_hubgateway_ap?help_keywords=where+is+My+Stuff')
-    
-    uiActions.validateText('.help-content', 'Where\'s My Stuff?')
-
+    assert.textExpectEquals('.help-content', 'Where\'s My Stuff?')
   })
   
 
   it('Test 2 - check filter "Amazon Devices', () => {
     navigateTo.todaysDealsPage()
-    
-    uiActions.containsClick('Amazon Devices').click()
-    uiActions.containsClick('[aria-label="Clear departments filter"]').click()
+    uiActions.containsClick('Amazon Devices')
+    uiActions.containsClick('Clear')
 
   })
 
-  it('Test 3 - add prodcuts to cart', () => {
+  it.only('Test 3 - add prodcuts to cart', () => {
     navigateTo.googleAssistPage()
     uiActions.getClick('[alt="White"]')
     cy.get('[alt="White"]').click()
