@@ -33,7 +33,7 @@ describe('Assignment - Ariel Rudin', () => {
 
   })
 
-  it.only('Test 1 - wheres my stuff? ', () => {
+  it('Test 1 - wheres my stuff? ', () => {
     navigateTo.customerServicePageLogged()
     cy.get('.help-search-bar').type('where is My Stuff{enter}')
     cy.url().should('eq', 'https://www.amazon.com/gp/help/customer/display.html/ref=fs_hubgateway_ap?help_keywords=where+is+My+Stuff')
