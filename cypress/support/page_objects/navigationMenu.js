@@ -7,17 +7,21 @@ export class NavigationPage{
         cy.url().should('eq', 'https://www.amazon.com/gp/goldbox?ref_=nav_cs_gb')
     }
 
-    customerServicePageNotLogged(){
+    customerServicePage(logged){
 
-        cy.get('#nav-xshop').contains('Customer Service').click()
-        cy.url().should('eq', 'https://www.amazon.com/gp/help/customer/display.html?nodeId=508510&ref_=nav_cs_customerservice')
-
+        if (logged == true){
+            cy.url().should('eq', 'https://www.amazon.com/hz/contact-us/foresight/hubgateway')
+        }   
+        if (logged == false){
+                cy.url().should('eq', 'https://www.amazon.com/gp/goldbox?ref_=nav_cs_gb')
+        }
     }
+   
 
     customerServicePageLogged(){
 
         cy.get('#nav-xshop').contains('Customer Service').click()
-        cy.url().should('eq', 'https://www.amazon.com/hz/contact-us/foresight/hubgateway')
+        cy.url().should('eq', '')
 
     }
 
